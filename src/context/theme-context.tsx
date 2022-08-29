@@ -1,6 +1,16 @@
 import React from 'react'
 
-export const themes = {
+export type Theme = {
+  color: string
+  backgroundColor: string
+}
+export type Themes = {
+  red: Theme
+  blue: Theme
+  green: Theme
+}
+
+export const themes: Themes = {
   red: {
     color: '#f5f5f5',
     backgroundColor: '#e33b3b',
@@ -17,6 +27,11 @@ export const themes = {
   },
 }
 
-const ThemeContext = React.createContext(themes.red)
+const ThemeContext = React.createContext({
+  theme: themes.red,
+  switchTheme: (theme: Theme) => {
+    console.log(theme)
+  },
+})
 
 export default ThemeContext

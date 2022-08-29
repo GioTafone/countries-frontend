@@ -5,14 +5,17 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 
 import App from './App'
+import ThemeProvider from './providers/theme-provider'
 import * as serviceWorker from './serviceWorker'
 import { store } from './redux/store'
 
 const WithProvider = () => (
   <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <App />
+      </Router>
+    </ThemeProvider>
   </Provider>
 )
 
