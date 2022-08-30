@@ -21,46 +21,70 @@ export default function Home() {
   }, [dispatch])
 
   const headers = [
+    'Flag',
     'Country',
     'Capital',
     'Population',
     'Currencies',
-    'Add to Basket',
+    ' ',
   ]
 
   const actions = [
-    { action: () => switchTheme(themes.red), color: 'Red' },
-    { action: () => switchTheme(themes.blue), color: 'Blue' },
-    { action: () => switchTheme(themes.green), color: 'Green' },
+    {
+      action: () => switchTheme(themes.orange),
+      text: 'Orange',
+      textColor: '#f58a42',
+    },
+    {
+      action: () => switchTheme(themes.blue),
+      text: 'Blue',
+      textColor: '#0c28f7',
+    },
+    {
+      action: () => switchTheme(themes.green),
+      text: 'Green',
+      textColor: '#47d657',
+    },
   ]
 
   return (
     <>
-      <div className="header">
-        <div className="header-btn">
-          {actions.map((btn) => (
-            <Button
-              key={btn.color}
-              handleSwitch={btn.action}
-              color={btn.color}
-            />
-          ))}
-        </div>
-        <Navbar text="Countries" />
-      </div>
-      <MUI.TableContainer component={MUI.Paper}>
-        <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHeader headers={headers} />
-          {countries.isLoading && <MUI.CircularProgress />}
-          <MUI.TableBody>
-            {countries.items.map((country) => {
-              return (
-                <TableRow key={country.ccn3} country={country} theme={theme} />
-              )
-            })}
-          </MUI.TableBody>
-        </MUI.Table>
-      </MUI.TableContainer>
+      <MUI.Container>
+        <MUI.Grid container>
+          <MUI.Grid item xs={12}>
+            {actions.map((btn) => (
+              <Button
+                key={btn.text}
+                handleSwitch={btn.action}
+                text={btn.text}
+                textColor={btn.textColor}
+              />
+            ))}
+          </MUI.Grid>
+          <MUI.Grid item xs={12}>
+            <Navbar text="Countries" />
+          </MUI.Grid>
+          <MUI.Grid item xs={12}>
+            <MUI.TableContainer component={MUI.Paper}>
+              <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHeader headers={headers} />
+                {countries.isLoading && <MUI.CircularProgress />}
+                <MUI.TableBody>
+                  {countries.items.map((country) => {
+                    return (
+                      <TableRow
+                        key={country.ccn3}
+                        country={country}
+                        theme={theme}
+                      />
+                    )
+                  })}
+                </MUI.TableBody>
+              </MUI.Table>
+            </MUI.TableContainer>
+          </MUI.Grid>
+        </MUI.Grid>
+      </MUI.Container>
     </>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import MUI from '../muiComponents'
+import AddIcon from '@material-ui/icons/Add'
 
 import ThemeContext from '../context/theme-context'
 import { Country } from '../redux/slices/countriesSlice'
@@ -24,6 +25,9 @@ const TableRow = ({ country }: RowProps) => {
       key={country.ccn3}
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
+      <MUI.TableCell scope="row">
+        <img src={country.flags.png} alt={country.name.common} />
+      </MUI.TableCell>
       {cells.map((cell, i) => {
         return (
           <MUI.TableCell scope="row" key={i}>
@@ -36,6 +40,7 @@ const TableRow = ({ country }: RowProps) => {
           onClick={() => console.log('Clicked')}
           variant="contained"
           style={theme}
+          endIcon={<AddIcon />}
         >
           Add
         </MUI.Button>

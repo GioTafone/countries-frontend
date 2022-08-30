@@ -13,6 +13,9 @@ export type Country = {
   }
   population: number
   ccn3: number
+  flags: {
+    png: string
+  }
 }
 
 export interface CountriesState {

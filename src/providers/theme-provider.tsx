@@ -6,7 +6,7 @@ type ThemeProps = {
   children: React.ReactNode
 }
 const ThemeProvider = ({ children }: ThemeProps) => {
-  const [theme, setTheme] = useState(themes.red)
+  const [theme, setTheme] = useState(themes.orange)
 
   const switchTheme = (theme: Theme) => {
     setTheme(theme)
@@ -18,7 +18,7 @@ const ThemeProvider = ({ children }: ThemeProps) => {
       const theme = localStorage.getItem('theme') || '{}'
       setTheme(JSON.parse(theme))
     } catch (error) {
-      localStorage.setItem('theme', JSON.stringify(themes.red))
+      localStorage.setItem('theme', JSON.stringify(themes.orange))
     }
   }, [])
 

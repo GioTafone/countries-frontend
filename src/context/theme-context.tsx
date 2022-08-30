@@ -5,20 +5,20 @@ export type Theme = {
   backgroundColor: string
 }
 export type Themes = {
-  red: Theme
+  orange: Theme
   blue: Theme
   green: Theme
 }
 
 export const themes: Themes = {
-  red: {
+  orange: {
     color: '#f5f5f5',
-    backgroundColor: '#e33b3b',
+    backgroundColor: '#f58a42',
   },
 
   blue: {
     color: '#f5f5f',
-    backgroundColor: '#4242eb',
+    backgroundColor: '#0c28f7',
   },
 
   green: {
@@ -28,7 +28,7 @@ export const themes: Themes = {
 }
 
 const ThemeContext = React.createContext({
-  theme: themes.red,
+  theme: themes.orange,
   switchTheme: (theme: Theme) => {
     console.log(theme)
   },

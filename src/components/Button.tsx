@@ -1,15 +1,21 @@
 import React from 'react'
+import MUI from '../muiComponents'
+import { useStyles } from '../styles/buttonStyle'
 
 type ButtonProps = {
-  color: string
+  text: string
   handleSwitch: () => void
+  textColor: string
 }
 
-const Button = ({ handleSwitch, color }: ButtonProps) => {
+const Button = ({ handleSwitch, text, textColor }: ButtonProps) => {
+  const classes = useStyles()
   return (
-    <button className="btn" onClick={handleSwitch}>
-      Switch to {color}
-    </button>
+    <MUI.Button onClick={handleSwitch} className={classes.root}>
+      <MUI.Typography>
+        Switch to <span style={{ color: textColor }}>{text}</span>
+      </MUI.Typography>
+    </MUI.Button>
   )
 }
 
