@@ -8,18 +8,23 @@ import { Country } from '../redux/slices/countriesSlice'
 type RowProps = {
   country: Country
   theme: { color: string; backgroundColor: string }
+  handleAddToFavourite: () => void
 }
-const TableRow = ({ country }: RowProps) => {
+
+const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
   const { theme } = useContext(ThemeContext)
+
   const currencies = Object.values(country.currencies).map(
     (currency) => currency.name
   )
+
   const cells = [
     country.name.common,
     country.capital.join(', '),
     country.population,
     currencies.join(', '),
   ]
+
   return (
     <MUI.TableRow
       key={country.ccn3}
@@ -37,7 +42,7 @@ const TableRow = ({ country }: RowProps) => {
       })}
       <MUI.TableCell>
         <MUI.Button
-          onClick={() => console.log('Clicked')}
+          onClick={handleAddToFavourite}
           variant="contained"
           style={theme}
           endIcon={<AddIcon />}

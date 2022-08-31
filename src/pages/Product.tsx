@@ -7,18 +7,18 @@ import { AppState } from '../types'
 export default function Product() {
   const { id } = useParams<{ id: string }>()
 
-  const product = useSelector((state: AppState) =>
+  const country = useSelector((state: AppState) =>
     state.product.inCart.find((p) => p.id === id)
   )
 
-  if (!product) {
+  if (!country) {
     return <div>Product not found</div>
   }
 
   return (
     <>
       <h1>Product page</h1>
-      <h2>{`${product.name} - $${product.price}`}</h2>
+      <h2>{country.name}</h2>
     </>
   )
 }

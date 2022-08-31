@@ -16,6 +16,7 @@ export type Country = {
   flags: {
     png: string
   }
+  counter: number
 }
 
 export interface CountriesState {
@@ -35,7 +36,7 @@ export const fetchCountriesThunk = createAsyncThunk(
       'https://restcountries.com/v3.1/all?fields=name,capital,currencies,population,flags,ccn3'
 
     const res = await axios.get(url)
-    console.log('response', res)
+    //console.log('response', res)
     return {
       data: res.data,
       status: res.status,
@@ -52,7 +53,7 @@ export const counterSlice = createSlice({
       state.isLoading = true
     })
     builder.addCase(fetchCountriesThunk.fulfilled, (state, action) => {
-      console.log('action:', action)
+      //console.log('COUNTRIES SLICE ACTION:', action)
       state.items = action.payload.data
       state.isLoading = false
     })

@@ -11,10 +11,12 @@ type ButtonProps = {
 const Button = ({ handleSwitch, text, textColor }: ButtonProps) => {
   const classes = useStyles()
   return (
-    <MUI.Button onClick={handleSwitch} className={classes.root}>
-      <MUI.Typography>
-        Switch to <span style={{ color: textColor }}>{text}</span>
-      </MUI.Typography>
+    <MUI.Button
+      onClick={handleSwitch}
+      className={classes.root}
+      style={{ color: textColor }}
+    >
+      {text}
     </MUI.Button>
   )
 }

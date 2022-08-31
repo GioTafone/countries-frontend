@@ -9,9 +9,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={themeMui}>
-        <body>
+        <div className="body">
           <Routes />
-        </body>
+        </div>
       </ThemeProvider>
     </>
   )

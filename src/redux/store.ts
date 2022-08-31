@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import countriesReducer from './slices/countriesSlice'
+import favouriteReducer from './slices/favouriteSlice'
 
 export const store = configureStore({
   reducer: {
     countries: countriesReducer,
+    favouriteCountries: favouriteReducer,
   },
 })
 
