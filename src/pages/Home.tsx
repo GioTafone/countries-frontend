@@ -1,24 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { AppDispatch, RootState } from '../redux/store'
+
 import { fetchCountriesThunk } from '../redux/slices/countriesSlice'
-import {
-  addToFavourite,
-  removeFromFavourite,
-} from '../redux/slices/favouriteSlice'
-import ThemeContext, { themes } from '../context/theme-context'
-import { NavBar, Button, TableRow, TableHeader, Test } from '../components'
+import { addToFavourite } from '../redux/slices/favouriteSlice'
+import ThemeContext from '../context/theme-context'
+import { NavBar, TableRow, TableHeader, SwitchTheme } from '../components'
 import MUI from '../muiComponents'
 
 export default function Home() {
-  const { theme, switchTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
-  const { countries, favouriteCountries } = useSelector(
-    (state: RootState) => state
-  )
+  const { countries } = useSelector((state: RootState) => state)
   //console.log('STATE FETCH COUNTRIES', countries)
-  //console.log('STATE FAVOURITE', favouriteCountries)
 
   useEffect(() => {
     dispatch(fetchCountriesThunk())
@@ -33,46 +27,12 @@ export default function Home() {
     ' ',
   ]
 
-  const actions = [
-    {
-      action: () => switchTheme(themes.orange),
-      text: 'Orange',
-      textColor: '#f58a42',
-    },
-    {
-      action: () => switchTheme(themes.blue),
-      text: 'Blue',
-      textColor: '#0c28f7',
-    },
-    {
-      action: () => switchTheme(themes.green),
-      text: 'Green',
-      textColor: '#47d657',
-    },
-  ]
-
   return (
     <>
-      {favouriteCountries.countries.map((country, i) => {
-        return (
-          <Test
-            key={i}
-            countryFav={country}
-            handleRemove={() => dispatch(removeFromFavourite(country))}
-          />
-        )
-      })}
       <MUI.Container>
         <MUI.Grid container>
           <MUI.Grid item xs={12}>
-            {actions.map((btn) => (
-              <Button
-                key={btn.text}
-                handleSwitch={btn.action}
-                text={btn.text}
-                textColor={btn.textColor}
-              />
-            ))}
+            <SwitchTheme />
           </MUI.Grid>
           <MUI.Grid item xs={12}>
             <NavBar text="Countries" />

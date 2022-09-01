@@ -12,6 +12,7 @@ import {
   Typography,
   Container,
   Grid,
+  Popover,
 } from '@mui/material'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -29,4 +30,5 @@ export default {
   Typography,
   Container,
   Grid,
+  Popover,
 }
