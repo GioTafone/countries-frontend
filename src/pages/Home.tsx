@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 
@@ -9,6 +9,7 @@ import { NavBar, TableRow, TableHeader, SwitchTheme } from '../components'
 import MUI from '../muiComponents'
 
 export default function Home() {
+  const [search, setSearch] = useState('')
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
   const { countries } = useSelector((state: RootState) => state)
@@ -18,14 +19,15 @@ export default function Home() {
     dispatch(fetchCountriesThunk())
   }, [dispatch])
 
-  const headers = [
-    'Flag',
-    'Country',
-    'Capital',
-    'Population',
-    'Currencies',
-    ' ',
-  ]
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const filteredCountries = countries.items.filter((country) => {
+    const searchCountry = search.toLowerCase()
+    const countryName = country.name.common.toLowerCase()
+    return searchCountry ? countryName.startsWith(searchCountry) : country
+  })
 
   return (
     <>
@@ -35,15 +37,15 @@ export default function Home() {
             <SwitchTheme />
           </MUI.Grid>
           <MUI.Grid item xs={12}>
-            <NavBar text="Countries" />
+            <NavBar text="Countries" handleChange={onChange} />
           </MUI.Grid>
           <MUI.Grid item xs={12}>
             <MUI.TableContainer component={MUI.Paper}>
               <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHeader headers={headers} />
+                <TableHeader />
                 {/* {countries.isLoading && <MUI.CircularProgress />} */}
                 <MUI.TableBody>
-                  {countries.items.map((country) => {
+                  {filteredCountries.map((country) => {
                     return (
                       <TableRow
                         key={country.ccn3}

@@ -13,6 +13,8 @@ import {
   Container,
   Grid,
   Popover,
+  TextField,
+  Badge,
 } from '@mui/material'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -31,4 +33,6 @@ export default {
   Container,
   Grid,
   Popover,
+  TextField,
+  Badge,
 }

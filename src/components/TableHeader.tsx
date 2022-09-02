@@ -1,11 +1,9 @@
 import React from 'react'
 import MUI from '../muiComponents'
 
-type TableHeaderProps = {
-  headers: string[]
-}
+const headers = ['Flag', 'Country', 'Capital', 'Population', 'Currencies', ' ']
 
-const TableHeader = ({ headers }: TableHeaderProps) => {
+const TableHeader = () => {
   return (
     <MUI.TableHead>
       <MUI.TableRow>

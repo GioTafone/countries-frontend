@@ -19,6 +19,7 @@ const PopoverMenu = () => {
     setAnchorEl(null)
   }
 
+  const totalFavourites = favouriteCountries.countries.length
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined
 
@@ -30,7 +31,9 @@ const PopoverMenu = () => {
         color="primary"
         disableRipple={true}
       >
-        <FavoriteIcon fontSize="large" />
+        <MUI.Badge badgeContent={totalFavourites} color="secondary">
+          <FavoriteIcon fontSize="large" />
+        </MUI.Badge>
       </MUI.Button>
       <MUI.Popover
         id={id}

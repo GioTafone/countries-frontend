@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../redux/store'
 import ThemeContext from '../context/theme-context'
 import { TextField } from '@mui/material'
 import MUI from '../muiComponents'
@@ -8,12 +6,11 @@ import PopoverMenu from './PopoverMenu'
 
 type NavbarProps = {
   text: string
+  handleChange: any
 }
 
-const Navbar = ({ text }: NavbarProps) => {
-  const { favouriteCountries } = useSelector((state: RootState) => state)
+const Navbar = ({ text, handleChange }: NavbarProps) => {
   const { theme } = useContext(ThemeContext)
-  const totalFavourites = favouriteCountries.countries.length
 
   return (
     <MUI.Box sx={{ boxShadow: 2 }} style={theme} component={MUI.Paper}>
@@ -35,10 +32,10 @@ const Navbar = ({ text }: NavbarProps) => {
             label="Search"
             variant="filled"
             color="primary"
+            onChange={handleChange}
           />
         </MUI.Grid>
         <MUI.Grid item xs={1.3}>
-          <MUI.Typography>{totalFavourites}</MUI.Typography>
           <PopoverMenu />
         </MUI.Grid>
       </MUI.Grid>
