@@ -3,6 +3,7 @@ import ThemeContext from '../context/theme-context'
 import { TextField } from '@mui/material'
 import MUI from '../muiComponents'
 import PopoverMenu from './PopoverMenu'
+import MuiDrawer from '../components/MuiDrawer'
 
 type NavbarProps = {
   text: string
@@ -15,6 +16,9 @@ const Navbar = ({ text, handleChange }: NavbarProps) => {
   return (
     <MUI.Box sx={{ boxShadow: 2 }} style={theme} component={MUI.Paper}>
       <MUI.Grid container direction="row" alignItems="center">
+        <MUI.Grid item xs={1}>
+          <MuiDrawer />
+        </MUI.Grid>
         <MUI.Grid item xs={4}>
           <MUI.Typography
             variant="h4"
@@ -26,7 +30,7 @@ const Navbar = ({ text, handleChange }: NavbarProps) => {
             {text}
           </MUI.Typography>
         </MUI.Grid>
-        <MUI.Grid item xs={6.7}>
+        <MUI.Grid item xs={5.7}>
           <TextField
             id="filled-basic"
             label="Search"

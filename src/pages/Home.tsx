@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../redux/store'
 import { fetchCountriesThunk } from '../redux/slices/countriesSlice'
 import { addToFavourite } from '../redux/slices/favouriteSlice'
 import ThemeContext from '../context/theme-context'
-import { NavBar, TableRow, TableHeader, SwitchTheme } from '../components'
+import { NavBar, TableRow, TableHeader } from '../components'
 import MUI from '../muiComponents'
 
 export default function Home() {
@@ -33,9 +33,7 @@ export default function Home() {
     <>
       <MUI.Container>
         <MUI.Grid container>
-          <MUI.Grid item xs={12}>
-            <SwitchTheme />
-          </MUI.Grid>
+          <MUI.Grid item xs={12}></MUI.Grid>
           <MUI.Grid item xs={12}>
             <NavBar text="Countries" handleChange={onChange} />
           </MUI.Grid>

@@ -16,7 +16,6 @@ export type Country = {
   flags: {
     png: string
   }
-  counter: number
 }
 
 export interface CountriesState {

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import MUI from '../muiComponents'
 import AddIcon from '@material-ui/icons/Add'
+import { Link } from 'react-router-dom'
 
 import ThemeContext from '../context/theme-context'
 import { Country } from '../redux/slices/countriesSlice'
@@ -36,7 +37,7 @@ const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
       {cells.map((cell, i) => {
         return (
           <MUI.TableCell scope="row" key={i}>
-            {cell}
+            <Link to={`/country/${cells[0]}`}>{cell}</Link>
           </MUI.TableCell>
         )
       })}

@@ -5,11 +5,11 @@ export type FavouriteCountry = {
   common: string
 }
 
-export interface favouriteState {
-  countries: FavouriteCountry[]
+export interface FavouriteState {
+  countries: string[]
 }
 
-const initialState: favouriteState = {
+const initialState: FavouriteState = {
   countries: [],
 }
 
@@ -21,7 +21,7 @@ export const favouriteSlice = createSlice({
       // console.log('ADD TO FAVOURITE ACTION:', action.payload.name.common)
       const newCountry = action.payload.name.common
       if (!state.countries.some((e) => e === newCountry)) {
-        state.countries.push(newCountry)
+        state.countries = [...state.countries, newCountry]
       } else {
         alert(`${newCountry} already into Favourites`)
       }

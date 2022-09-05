@@ -15,6 +15,11 @@ import {
   Popover,
   TextField,
   Badge,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
 } from '@mui/material'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -35,4 +40,9 @@ export default {
   Popover,
   TextField,
   Badge,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
 }

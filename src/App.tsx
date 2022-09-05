@@ -3,14 +3,14 @@ import { ThemeProvider } from '@emotion/react'
 import { themeMui } from './styles/themeStyles'
 import './App.css'
 
-import Routes from './Routes'
+import Pages from './Pages'
 
 export default function App() {
   return (
     <>
       <ThemeProvider theme={themeMui}>
         <div className="body">
-          <Routes />
+          <Pages />
         </div>
       </ThemeProvider>
     </>
