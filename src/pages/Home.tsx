@@ -13,8 +13,12 @@ import {
 import ThemeContext from '../context/theme-context'
 import { NavBar, TableRow, TableHeader } from '../components'
 import MUI from '../muiComponents'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 
 export default function Home() {
+  const [sortByName, setSortByName] = useState(true)
+  const [sortByPopulation, setSortByPopulation] = useState(true)
   const [search, setSearch] = useState('')
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
@@ -29,29 +33,29 @@ export default function Home() {
     setSearch(e.target.value)
   }
 
-  const handleNameSortAsc = () => {
-    dispatch(sortByNameAsc(countries))
+  const handleNameSorting = () => {
+    setSortByName((prevState) => !prevState)
+    if (sortByName) {
+      dispatch(sortByNameAsc(countries))
+    } else {
+      dispatch(sortByNameDes(countries))
+    }
   }
 
-  const handleNameSortDes = () => {
-    dispatch(sortByNameDes(countries))
+  const handlePopulationSorting = () => {
+    setSortByPopulation((prevState) => !prevState)
+    if (sortByPopulation) {
+      dispatch(sortByPopulationAsc(countries))
+    } else {
+      dispatch(sortByPopulationDec(countries))
+    }
   }
 
-  const handlePopulationSortDes = () => {
-    dispatch(sortByPopulationAsc(countries))
-  }
-
-  const handlePopulationSortAsc = () => {
-    dispatch(sortByPopulationDec(countries))
-  }
-
-  const filteredCountries = countries.items
-    .filter((country) => {
-      const searchCountry = search.toLowerCase()
-      const countryName = country.name.common.toLowerCase()
-      return searchCountry ? countryName.startsWith(searchCountry) : country
-    })
-    .sort()
+  const filteredCountries = countries.items.filter((country) => {
+    const searchCountry = search.toLowerCase()
+    const countryName = country.name.common.toLowerCase()
+    return searchCountry ? countryName.startsWith(searchCountry) : country
+  })
 
   return (
     <>
@@ -60,31 +64,38 @@ export default function Home() {
           <MUI.Grid item xs={12}></MUI.Grid>
           <MUI.Grid item xs={12}>
             <NavBar text="Countries" handleChange={onChange} />
-            <button onClick={() => handleNameSortAsc()}>Click</button>
-            <button onClick={() => handleNameSortDes()}>Click</button>
-            <button onClick={() => handlePopulationSortDes()}>Click</button>
-            <button onClick={() => handlePopulationSortAsc()}>Click</button>
           </MUI.Grid>
           <MUI.Grid item xs={12}>
             <MUI.TableContainer component={MUI.Paper}>
               <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHeader />
+                <TableHeader
+                  arrowName={
+                    sortByName ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />
+                  }
+                  nameSort={handleNameSorting}
+                  arrowPopulation={
+                    sortByPopulation ? (
+                      <ArrowUpwardIcon />
+                    ) : (
+                      <ArrowDownwardIcon />
+                    )
+                  }
+                  populationSort={handlePopulationSorting}
+                />
                 {/* {countries.isLoading && <MUI.CircularProgress />} */}
                 <MUI.TableBody>
-                  {filteredCountries
-                    .map((country) => {
-                      return (
-                        <TableRow
-                          key={country.ccn3}
-                          country={country}
-                          theme={theme}
-                          handleAddToFavourite={() =>
-                            dispatch(addToFavourite(country))
-                          }
-                        />
-                      )
-                    })
-                    .sort()}
+                  {filteredCountries.map((country) => {
+                    return (
+                      <TableRow
+                        key={country.ccn3}
+                        country={country}
+                        theme={theme}
+                        handleAddToFavourite={() =>
+                          dispatch(addToFavourite(country))
+                        }
+                      />
+                    )
+                  })}
                 </MUI.TableBody>
               </MUI.Table>
             </MUI.TableContainer>

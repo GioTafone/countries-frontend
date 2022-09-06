@@ -20,6 +20,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
 } from '@mui/material'
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -45,4 +46,5 @@ export default {
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
 }
