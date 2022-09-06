@@ -61,7 +61,6 @@ export default function Home() {
     <>
       <MUI.Container>
         <MUI.Grid container>
-          <MUI.Grid item xs={12}></MUI.Grid>
           <MUI.Grid item xs={12}>
             <NavBar text="Countries" handleChange={onChange} />
           </MUI.Grid>

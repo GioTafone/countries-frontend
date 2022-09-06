@@ -23,6 +23,8 @@ const PopoverMenu = () => {
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined
 
+  const isEmpty = totalFavourites === 0
+
   return (
     <>
       <MUI.Button
@@ -46,16 +48,22 @@ const PopoverMenu = () => {
         }}
       >
         <MUI.Typography sx={{ p: 2 }}>
-          <MUI.Typography sx={{ p: 1 }}>FAVOURITE COUNTRIES</MUI.Typography>
-          {favouriteCountries.countries.map((country, i) => {
-            return (
-              <Cart
-                key={i}
-                countryFav={country}
-                handleRemove={() => dispatch(removeFromFavourite(country))}
-              />
-            )
-          })}
+          {isEmpty ? (
+            <MUI.Typography sx={{ p: 1 }}>NO FAVORITE COUNTRIES</MUI.Typography>
+          ) : (
+            <MUI.Typography sx={{ p: 1 }}>FAVOURITE COUNTRIES</MUI.Typography>
+          )}
+          <MUI.Typography sx={{ p: 2 }}>
+            {favouriteCountries.countries.map((country, i) => {
+              return (
+                <Cart
+                  key={i}
+                  countryFav={country}
+                  handleRemove={() => dispatch(removeFromFavourite(country))}
+                />
+              )
+            })}
+          </MUI.Typography>
         </MUI.Typography>
       </MUI.Popover>
     </>

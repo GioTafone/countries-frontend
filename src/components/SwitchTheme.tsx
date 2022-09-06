@@ -29,12 +29,13 @@ const SwitchTheme = () => {
     <MUI.Grid item xs={12}>
       <Typography align="center">SWITCH THEME TO</Typography>
       {actions.map((btn) => (
-        <Button
-          key={btn.text}
-          handleClick={btn.action}
-          text={btn.text}
-          textColor={btn.textColor}
-        />
+        <Typography key={btn.text} variant="h3">
+          <Button
+            handleClick={btn.action}
+            text={btn.text}
+            textColor={btn.textColor}
+          />
+        </Typography>
       ))}
     </MUI.Grid>
   )

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import ThemeContext from '../context/theme-context'
 import { Country } from '../redux/slices/countriesSlice'
+import { Typography } from '@material-ui/core'
 
 type RowProps = {
   country: Country
@@ -37,7 +38,12 @@ const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
       {cells.map((cell, i) => {
         return (
           <MUI.TableCell scope="row" key={i}>
-            <Link to={`/country/${cells[0]}`}>{cell}</Link>
+            <Link
+              to={`/country/${cells[0]}`}
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              <Typography>{cell}</Typography>
+            </Link>
           </MUI.TableCell>
         )
       })}

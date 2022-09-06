@@ -28,7 +28,10 @@ const useStyles = makeStyles({
     maxWidth: 450,
   },
   media: {
-    height: 200,
+    height: 250,
+  },
+  '&:hover': {
+    pointerEvents: 'none',
   },
 })
 
@@ -63,17 +66,20 @@ const Country = () => {
     }
   }, [id])
 
-  console.log(country)
+  console.log(country.flags)
   const currencies = Object.values(country.currencies)[0]
+  const name = Object.values(country.name.common)
+  const continents = Object.values(country.continents)
+  const capital = Object.values(country.capital)
 
   const classes = useStyles()
   if (!country.name.common) {
-    return <MUI.Typography variant="h1">Loading</MUI.Typography>
+    return <MUI.Typography variant="h5">Loading...</MUI.Typography>
   }
 
   return (
-    <MUI.Card className={classes.root}>
-      <MUI.CardActionArea>
+    <>
+      <MUI.Card className={classes.root} elevation={3}>
         <MUI.CardMedia
           className={classes.media}
           image={country.flags.png}
@@ -81,13 +87,13 @@ const Country = () => {
         />
         <MUI.CardContent>
           <MUI.Typography gutterBottom variant="h5" component="h2">
-            {country.name.common}
+            {name}
           </MUI.Typography>
           <MUI.Typography variant="body2" color="textSecondary" component="p">
-            CONTINENT: {country.continents}
+            CONTINENT: {continents}
           </MUI.Typography>
           <MUI.Typography variant="body2" color="textSecondary" component="p">
-            CAPITAL: {country.capital}
+            CAPITAL: {capital}
           </MUI.Typography>
           {currencies && (
             <MUI.Typography variant="body2" color="textSecondary" component="p">
@@ -95,19 +101,19 @@ const Country = () => {
             </MUI.Typography>
           )}
         </MUI.CardContent>
-      </MUI.CardActionArea>
-      <MUI.CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => {
-            navigate('/')
-          }}
-        >
-          GO BACK
-        </Button>
-      </MUI.CardActions>
-    </MUI.Card>
+        <MUI.CardActions>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            GO BACK
+          </Button>
+        </MUI.CardActions>
+      </MUI.Card>
+    </>
   )
 }
 
