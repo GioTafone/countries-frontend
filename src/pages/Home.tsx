@@ -4,6 +4,12 @@ import { AppDispatch, RootState } from '../redux/store'
 
 import { fetchCountriesThunk } from '../redux/slices/countriesSlice'
 import { addToFavourite } from '../redux/slices/favouriteSlice'
+import {
+  sortByNameAsc,
+  sortByNameDes,
+  sortByPopulationAsc,
+  sortByPopulationDec,
+} from '../redux/slices/countriesSlice'
 import ThemeContext from '../context/theme-context'
 import { NavBar, TableRow, TableHeader } from '../components'
 import MUI from '../muiComponents'
@@ -13,7 +19,7 @@ export default function Home() {
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
   const { countries } = useSelector((state: RootState) => state)
-  //console.log('STATE FETCH COUNTRIES', countries)
+  //console.log('STATE FETCH COUNTRIES', countries.items)
 
   useEffect(() => {
     dispatch(fetchCountriesThunk())
@@ -23,11 +29,29 @@ export default function Home() {
     setSearch(e.target.value)
   }
 
-  const filteredCountries = countries.items.filter((country) => {
-    const searchCountry = search.toLowerCase()
-    const countryName = country.name.common.toLowerCase()
-    return searchCountry ? countryName.startsWith(searchCountry) : country
-  })
+  const handleNameSortAsc = () => {
+    dispatch(sortByNameAsc(countries))
+  }
+
+  const handleNameSortDes = () => {
+    dispatch(sortByNameDes(countries))
+  }
+
+  const handlePopulationSortDes = () => {
+    dispatch(sortByPopulationAsc(countries))
+  }
+
+  const handlePopulationSortAsc = () => {
+    dispatch(sortByPopulationDec(countries))
+  }
+
+  const filteredCountries = countries.items
+    .filter((country) => {
+      const searchCountry = search.toLowerCase()
+      const countryName = country.name.common.toLowerCase()
+      return searchCountry ? countryName.startsWith(searchCountry) : country
+    })
+    .sort()
 
   return (
     <>
@@ -36,6 +60,10 @@ export default function Home() {
           <MUI.Grid item xs={12}></MUI.Grid>
           <MUI.Grid item xs={12}>
             <NavBar text="Countries" handleChange={onChange} />
+            <button onClick={() => handleNameSortAsc()}>Click</button>
+            <button onClick={() => handleNameSortDes()}>Click</button>
+            <button onClick={() => handlePopulationSortDes()}>Click</button>
+            <button onClick={() => handlePopulationSortAsc()}>Click</button>
           </MUI.Grid>
           <MUI.Grid item xs={12}>
             <MUI.TableContainer component={MUI.Paper}>
@@ -43,18 +71,20 @@ export default function Home() {
                 <TableHeader />
                 {/* {countries.isLoading && <MUI.CircularProgress />} */}
                 <MUI.TableBody>
-                  {filteredCountries.map((country) => {
-                    return (
-                      <TableRow
-                        key={country.ccn3}
-                        country={country}
-                        theme={theme}
-                        handleAddToFavourite={() =>
-                          dispatch(addToFavourite(country))
-                        }
-                      />
-                    )
-                  })}
+                  {filteredCountries
+                    .map((country) => {
+                      return (
+                        <TableRow
+                          key={country.ccn3}
+                          country={country}
+                          theme={theme}
+                          handleAddToFavourite={() =>
+                            dispatch(addToFavourite(country))
+                          }
+                        />
+                      )
+                    })
+                    .sort()}
                 </MUI.TableBody>
               </MUI.Table>
             </MUI.TableContainer>

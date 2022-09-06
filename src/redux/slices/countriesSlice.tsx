@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export type Country = {
@@ -35,6 +36,7 @@ export const fetchCountriesThunk = createAsyncThunk(
       'https://restcountries.com/v3.1/all?fields=name,capital,currencies,population,flags,ccn3'
 
     const res = await axios.get(url)
+
     //console.log('response', res)
     return {
       data: res.data,
@@ -46,7 +48,45 @@ export const fetchCountriesThunk = createAsyncThunk(
 export const counterSlice = createSlice({
   name: 'countries',
   initialState,
-  reducers: {},
+  reducers: {
+    sortByNameAsc: (state, action: PayloadAction<any>) => {
+      const mapCountry = action.payload.items.map((country: object) => {
+        return country
+      })
+      const sortedCountries = mapCountry.sort((a, b) =>
+        a.name.common > b.name.common ? 1 : -1
+      )
+      state.items = sortedCountries
+    },
+    sortByNameDes: (state, action: PayloadAction<any>) => {
+      const mapCountry = action.payload.items.map((country: object) => {
+        return country
+      })
+      const sortedCountries = mapCountry.sort((a, b) =>
+        a.name.common > b.name.common ? -1 : 1
+      )
+      state.items = sortedCountries
+    },
+    sortByPopulationAsc: (state, action: PayloadAction<any>) => {
+      const mapCountry = action.payload.items.map((country: object) => {
+        return country
+      })
+      const sortedCountries = mapCountry.sort((a, b) =>
+        a.population > b.population ? -1 : 1
+      )
+      state.items = sortedCountries
+    },
+    sortByPopulationDec: (state, action: PayloadAction<any>) => {
+      const mapCountry = action.payload.items.map((country: object) => {
+        return country
+      })
+      const sortedCountries = mapCountry.sort((a, b) =>
+        a.population > b.population ? 1 : -1
+      )
+      state.items = sortedCountries
+    },
+  },
+
   extraReducers: (builder) => {
     builder.addCase(fetchCountriesThunk.pending, (state) => {
       state.isLoading = true
@@ -58,5 +98,12 @@ export const counterSlice = createSlice({
     })
   },
 })
+
+export const {
+  sortByNameAsc,
+  sortByNameDes,
+  sortByPopulationAsc,
+  sortByPopulationDec,
+} = counterSlice.actions
 
 export default counterSlice.reducer
