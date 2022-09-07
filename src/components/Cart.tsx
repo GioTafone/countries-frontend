@@ -10,7 +10,7 @@ const Cart = ({ countryFav, handleRemove }: CartProps) => {
   return (
     <MUI.Grid container direction="row" sx={{ p: 1 }}>
       <MUI.Grid item xs={6}>
-        <MUI.Typography>{countryFav}</MUI.Typography>
+        <MUI.Typography align="justify">{countryFav}</MUI.Typography>
       </MUI.Grid>
       <MUI.Grid item xs={4}>
         <MUI.Button onClick={handleRemove} variant="outlined" color="secondary">

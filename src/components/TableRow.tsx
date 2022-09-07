@@ -4,7 +4,7 @@ import AddIcon from '@material-ui/icons/Add'
 import { Link } from 'react-router-dom'
 
 import ThemeContext from '../context/theme-context'
-import { Country } from '../redux/slices/countriesSlice'
+import { Country } from '../types'
 import { Typography } from '@material-ui/core'
 
 type RowProps = {

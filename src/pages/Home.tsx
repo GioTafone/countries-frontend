@@ -4,6 +4,7 @@ import { AppDispatch, RootState } from '../redux/store'
 
 import { fetchCountriesThunk } from '../redux/slices/countriesSlice'
 import { addToFavourite } from '../redux/slices/favouriteSlice'
+import { searchByName } from '../redux/slices/countriesSlice'
 import {
   sortByNameAsc,
   sortByNameDes,
@@ -19,7 +20,6 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 export default function Home() {
   const [sortByName, setSortByName] = useState(true)
   const [sortByPopulation, setSortByPopulation] = useState(true)
-  const [search, setSearch] = useState('')
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
   const { countries } = useSelector((state: RootState) => state)
@@ -29,8 +29,9 @@ export default function Home() {
     dispatch(fetchCountriesThunk())
   }, [dispatch])
 
-  const onChange = (e) => {
-    setSearch(e.target.value)
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(searchByName(e.target.value))
+    console.log('target', e.target.value)
   }
 
   const handleNameSorting = () => {
@@ -50,12 +51,6 @@ export default function Home() {
       dispatch(sortByPopulationDec(countries))
     }
   }
-
-  const filteredCountries = countries.items.filter((country) => {
-    const searchCountry = search.toLowerCase()
-    const countryName = country.name.common.toLowerCase()
-    return searchCountry ? countryName.startsWith(searchCountry) : country
-  })
 
   return (
     <>
@@ -83,7 +78,7 @@ export default function Home() {
                 />
                 {/* {countries.isLoading && <MUI.CircularProgress />} */}
                 <MUI.TableBody>
-                  {filteredCountries.map((country) => {
+                  {countries.items.map((country) => {
                     return (
                       <TableRow
                         key={country.ccn3}

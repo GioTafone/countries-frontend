@@ -1,7 +1,19 @@
-// Action types
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
-export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
+export type Country = {
+  name: {
+    common: string
+  }
+  capital: string[]
+  currencies: {
+    [key: string]: {
+      name: string
+    }
+  }
+  population: number
+  ccn3: number
+  flags: {
+    png: string
+  }
+}
 
 // Enum
 // export enum DialogType {
@@ -19,20 +31,6 @@ export type Favourite = {
   name: string
 }
 
-export type AddProductAction = {
-  type: typeof ADD_PRODUCT
-  payload: {
-    product: Favourite
-  }
-}
-
-export type RemoveProductAction = {
-  type: typeof REMOVE_PRODUCT
-  payload: {
-    product: Favourite
-  }
-}
-
 // export type ToggleDialogAction = {
 //   type: typeof TOGGLE_DIALOG
 //   payload: {
@@ -43,7 +41,6 @@ export type RemoveProductAction = {
 // export type UiActions = ToggleDialogAction
 
 // Use this union in reducer
-export type ProductActions = AddProductAction | RemoveProductAction
 
 export type ProductState = {
   inCart: Favourite[]

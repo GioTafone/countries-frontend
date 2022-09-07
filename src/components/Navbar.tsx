@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import ThemeContext from '../context/theme-context'
-import { TextField } from '@mui/material'
+
 import MUI from '../muiComponents'
-import PopoverMenu from './PopoverMenu'
 import MuiDrawer from '../components/MuiDrawer'
+import PopoverMenu from './PopoverMenu'
+import SearchBar from './SearchBar'
 
 type NavbarProps = {
   text: string
@@ -28,13 +29,7 @@ const Navbar = ({ text, handleChange }: NavbarProps) => {
             </MUI.Typography>
           </MUI.Grid>
           <MUI.Grid item xs={6}>
-            <TextField
-              id="filled-basic"
-              label="Search"
-              variant="filled"
-              color="primary"
-              onChange={handleChange}
-            />
+            <SearchBar />
           </MUI.Grid>
           <MUI.Grid item xs={1}>
             <PopoverMenu />

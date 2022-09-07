@@ -2,30 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export type Country = {
-  name: {
-    common: string
-  }
-  capital: string[]
-  currencies: {
-    [key: string]: {
-      name: string
-    }
-  }
-  population: number
-  ccn3: number
-  flags: {
-    png: string
-  }
-}
+import { Country } from '../../types'
 
 export interface CountriesState {
   items: Country[]
+  itemsRef: Country[]
   isLoading: boolean
 }
 
 const initialState: CountriesState = {
   items: [],
+  itemsRef: [],
   isLoading: false,
 }
 
@@ -49,6 +36,17 @@ export const counterSlice = createSlice({
   name: 'countries',
   initialState,
   reducers: {
+    searchByName: (state, action) => {
+      const search = action.payload.toLowerCase()
+      const searchCountry = state.itemsRef.filter((item) => {
+        const countryName = item.name.common.toLowerCase()
+        if (countryName.startsWith(search)) {
+          return item
+        }
+        return false
+      })
+      state.items = searchCountry
+    },
     sortByNameAsc: (state, action: PayloadAction<any>) => {
       const mapCountry = action.payload.items.map((country: object) => {
         return country
@@ -92,8 +90,9 @@ export const counterSlice = createSlice({
       state.isLoading = true
     })
     builder.addCase(fetchCountriesThunk.fulfilled, (state, action) => {
-      //console.log('COUNTRIES SLICE ACTION:', action)
+      console.log('COUNTRIES SLICE ACTION:', action)
       state.items = action.payload.data
+      state.itemsRef = action.payload.data
       state.isLoading = false
     })
   },
@@ -104,6 +103,7 @@ export const {
   sortByNameDes,
   sortByPopulationAsc,
   sortByPopulationDec,
+  searchByName,
 } = counterSlice.actions
 
 export default counterSlice.reducer

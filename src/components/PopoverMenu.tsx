@@ -27,7 +27,7 @@ const PopoverMenu = () => {
 
   return (
     <>
-      <MUI.Button
+      <MUI.IconButton
         aria-describedby={id}
         onClick={handleClick}
         color="primary"
@@ -36,7 +36,7 @@ const PopoverMenu = () => {
         <MUI.Badge badgeContent={totalFavourites} color="secondary">
           <FavoriteIcon fontSize="large" />
         </MUI.Badge>
-      </MUI.Button>
+      </MUI.IconButton>
       <MUI.Popover
         id={id}
         open={open}
@@ -47,24 +47,32 @@ const PopoverMenu = () => {
           horizontal: 'left',
         }}
       >
-        <MUI.Typography sx={{ p: 2 }}>
-          {isEmpty ? (
-            <MUI.Typography sx={{ p: 1 }}>NO FAVORITE COUNTRIES</MUI.Typography>
-          ) : (
-            <MUI.Typography sx={{ p: 1 }}>FAVOURITE COUNTRIES</MUI.Typography>
-          )}
-          <MUI.Typography sx={{ p: 2 }}>
-            {favouriteCountries.countries.map((country, i) => {
-              return (
-                <Cart
-                  key={i}
-                  countryFav={country}
-                  handleRemove={() => dispatch(removeFromFavourite(country))}
-                />
-              )
-            })}
-          </MUI.Typography>
-        </MUI.Typography>
+        <MUI.Grid container direction="column" alignItems="center">
+          <MUI.Grid item>
+            {isEmpty ? (
+              <MUI.Typography sx={{ p: 1 }} variant="h6">
+                NO FAVORITE COUNTRIES
+              </MUI.Typography>
+            ) : (
+              <MUI.Typography sx={{ p: 1 }} variant="h6">
+                FAVOURITE COUNTRIES
+              </MUI.Typography>
+            )}
+          </MUI.Grid>
+          <MUI.Grid item>
+            <MUI.Typography sx={{ p: 2 }} variant="body2">
+              {favouriteCountries.countries.map((country, i) => {
+                return (
+                  <Cart
+                    key={i}
+                    countryFav={country}
+                    handleRemove={() => dispatch(removeFromFavourite(country))}
+                  />
+                )
+              })}
+            </MUI.Typography>
+          </MUI.Grid>
+        </MUI.Grid>
       </MUI.Popover>
     </>
   )
