@@ -66,7 +66,7 @@ const Country = () => {
     }
   }, [id])
 
-  console.log(country.flags)
+  //console.log(country.flags)
   const currencies = Object.values(country.currencies)[0]
   const name = Object.values(country.name.common)
   const continents = Object.values(country.continents)

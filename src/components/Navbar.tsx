@@ -3,8 +3,8 @@ import ThemeContext from '../context/theme-context'
 
 import MUI from '../muiComponents'
 import MuiDrawer from '../components/MuiDrawer'
-import PopoverMenu from './PopoverMenu'
-import SearchBar from './SearchBar'
+import Popover from './Popover/Popover'
+import SearchBar from './SearchBar/SearchBar'
 
 type NavbarProps = {
   text: string
@@ -32,7 +32,7 @@ const Navbar = ({ text, handleChange }: NavbarProps) => {
             <SearchBar />
           </MUI.Grid>
           <MUI.Grid item xs={1}>
-            <PopoverMenu />
+            <Popover />
           </MUI.Grid>
         </MUI.Grid>
       </MUI.Box>

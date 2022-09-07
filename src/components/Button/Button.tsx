@@ -1,6 +1,7 @@
 import React from 'react'
-import MUI from '../muiComponents'
-import { useStyles } from '../styles/themeButtonStyle'
+
+import MUI from '../../muiComponents'
+import { useStyles } from './ButtonStyle'
 
 type ButtonProps = {
   text: string

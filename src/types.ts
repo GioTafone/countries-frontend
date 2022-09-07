@@ -15,6 +15,17 @@ export type Country = {
   }
 }
 
+export type FavouriteState = {
+  countries: {
+    name: {
+      common: string
+    }
+    flags: {
+      png: string
+    }
+  }[]
+}
+
 // Enum
 // export enum DialogType {
 //   SignIn = 'signIn',

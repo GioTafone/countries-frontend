@@ -1,20 +1,14 @@
 import React, { useCallback } from 'react'
 import debounce from 'lodash.debounce'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../redux/store'
-import { makeStyles } from '@material-ui/core/styles'
+import { AppDispatch } from '../../redux/store'
 
-import MUI from '../muiComponents'
-import { searchByName } from '../redux/slices/countriesSlice'
+import { useStyles } from './searchBarStyle'
+import MUI from '../../muiComponents'
+import { searchByName } from '../../redux/slices/countriesSlice'
 
 const SearchBar = () => {
   const dispatch = useDispatch<AppDispatch>()
-
-  const useStyles = makeStyles({
-    input: {
-      color: 'white',
-    },
-  })
   const classes = useStyles()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +21,8 @@ const SearchBar = () => {
   return (
     <MUI.TextField
       id="filled-basic"
-      label="Search"
       variant="filled"
-      color="primary"
+      label="Search"
       onChange={debouncedChangeHandler}
       inputProps={{ className: classes.input }}
     />

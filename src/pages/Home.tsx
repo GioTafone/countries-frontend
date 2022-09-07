@@ -31,7 +31,7 @@ export default function Home() {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(searchByName(e.target.value))
-    console.log('target', e.target.value)
+    //console.log('target', e.target.value)
   }
 
   const handleNameSorting = () => {
@@ -78,7 +78,7 @@ export default function Home() {
                 />
                 {/* {countries.isLoading && <MUI.CircularProgress />} */}
                 <MUI.TableBody>
-                  {countries.items.map((country) => {
+                  {countries.items.map((country: any) => {
                     return (
                       <TableRow
                         key={country.ccn3}
