@@ -22,7 +22,7 @@ const SearchBar = () => {
     <MUI.TextField
       id="filled-basic"
       variant="filled"
-      label="Search"
+      label="Search a Country"
       onChange={debouncedChangeHandler}
       inputProps={{ className: classes.input }}
     />

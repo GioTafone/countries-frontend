@@ -1,21 +1,25 @@
 import React, { useState } from 'react'
-import { Drawer, Typography } from '@material-ui/core'
+import { Drawer } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
+
 import MUI from '../muiComponents'
-import { SwitchTheme } from '../components'
+import { ThemeMenu } from './'
 
 const MuiDrawer = () => {
   const [open, setOpen] = useState(false)
   return (
     <>
-      <MUI.Button onClick={() => setOpen(true)} color="primary">
+      <MUI.IconButton
+        onClick={() => setOpen(true)}
+        color="primary"
+        aria-expanded="false"
+        aria-label="Switch Theme"
+      >
         <MenuIcon fontSize="large" />
-      </MUI.Button>
+      </MUI.IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <MUI.Box p={2} width="250px" textAlign="center">
-          <Typography variant="h6" component="div">
-            <SwitchTheme />
-          </Typography>
+          <ThemeMenu />
         </MUI.Box>
       </Drawer>
     </>

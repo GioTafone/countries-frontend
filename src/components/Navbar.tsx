@@ -2,16 +2,13 @@ import React, { useContext } from 'react'
 import ThemeContext from '../context/theme-context'
 
 import MUI from '../muiComponents'
-import MuiDrawer from '../components/MuiDrawer'
-import Popover from './Popover/Popover'
-import SearchBar from './SearchBar/SearchBar'
+import { MuiDrawer, Popover, SearchBar } from './'
 
 type NavbarProps = {
   text: string
-  handleChange: any
 }
 
-const Navbar = ({ text, handleChange }: NavbarProps) => {
+const Navbar = ({ text }: NavbarProps) => {
   const { theme } = useContext(ThemeContext)
 
   return (

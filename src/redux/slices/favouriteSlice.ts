@@ -22,6 +22,13 @@ export const favouriteSlice = createSlice({
         alert(`${name.common} already into Favourites`)
       }
     },
+    // alreadyInFavourite: (state, action: PayloadAction<any>) => {
+    //   //console.log('ADD TO FAVOURITE ACTION:', action.payload)
+    //   const { name } = action.payload
+    //   if (state.countries.some((e) => e.name.common === name.common)) {
+    //     return console.log(name.common)
+    //   }
+    // },
     removeFromFavourite: (state, action: PayloadAction<any>) => {
       const removeCountry = action.payload.name.common
       //console.log('REMOVE FROM FAVOURITE ACTION:', removeCountry)

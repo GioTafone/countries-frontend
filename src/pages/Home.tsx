@@ -4,7 +4,6 @@ import { AppDispatch, RootState } from '../redux/store'
 
 import { fetchCountriesThunk } from '../redux/slices/countriesSlice'
 import { addToFavourite } from '../redux/slices/favouriteSlice'
-import { searchByName } from '../redux/slices/countriesSlice'
 import {
   sortByNameAsc,
   sortByNameDes,
@@ -29,11 +28,6 @@ export default function Home() {
     dispatch(fetchCountriesThunk())
   }, [dispatch])
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(searchByName(e.target.value))
-    //console.log('target', e.target.value)
-  }
-
   const handleNameSorting = () => {
     setSortByName((prevState) => !prevState)
     if (sortByName) {
@@ -57,7 +51,7 @@ export default function Home() {
       <MUI.Container>
         <MUI.Grid container>
           <MUI.Grid item xs={12}>
-            <NavBar text="Countries" handleChange={onChange} />
+            <NavBar text="Countries" />
           </MUI.Grid>
           <MUI.Grid item xs={12}>
             <MUI.TableContainer component={MUI.Paper}>

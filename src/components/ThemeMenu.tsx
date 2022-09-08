@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
+
 import ThemeContext, { themes } from '../context/theme-context'
-import MUI from '../muiComponents'
 import { Button } from '.'
-import { Typography } from '@material-ui/core'
+import MUI from '../muiComponents'
 
 const SwitchTheme = () => {
   const { switchTheme } = useContext(ThemeContext)
@@ -27,16 +27,20 @@ const SwitchTheme = () => {
 
   return (
     <MUI.Grid item xs={12}>
-      <Typography align="center">SWITCH THEME TO</Typography>
-      {actions.map((btn) => (
-        <Typography key={btn.text} variant="h3">
-          <Button
-            handleClick={btn.action}
-            text={btn.text}
-            textColor={btn.textColor}
-          />
-        </Typography>
-      ))}
+      <MUI.Typography align="center" variant="h6" component="h2" sx={{ py: 1 }}>
+        SWITCH THEME TO
+      </MUI.Typography>
+      <MUI.List>
+        {actions.map((btn) => (
+          <MUI.ListItem key={btn.text}>
+            <Button
+              handleClick={btn.action}
+              text={btn.text}
+              textColor={btn.textColor}
+            />
+          </MUI.ListItem>
+        ))}
+      </MUI.List>
     </MUI.Grid>
   )
 }

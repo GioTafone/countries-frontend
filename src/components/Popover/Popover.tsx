@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AppDispatch, RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import FavoriteIcon from '@material-ui/icons/Favorite'
@@ -14,7 +14,7 @@ import { useStyles } from './PopoverStyle'
 const Popover = () => {
   const { favouriteCountries } = useSelector((state: RootState) => state)
   const dispatch = useDispatch<AppDispatch>()
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
@@ -58,7 +58,8 @@ const Popover = () => {
             {isEmpty ? (
               <MUI.Typography
                 sx={{ p: 1 }}
-                variant="h3"
+                component="h3"
+                variant="h6"
                 className={classes.root}
               >
                 No favourites
@@ -66,7 +67,8 @@ const Popover = () => {
             ) : (
               <MUI.Typography
                 sx={{ p: 1 }}
-                variant="h3"
+                component="h3"
+                variant="h6"
                 className={classes.root}
               >
                 Your favourites
