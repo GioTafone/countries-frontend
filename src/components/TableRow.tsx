@@ -52,7 +52,7 @@ const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
           onClick={handleAddToFavourite}
           variant="contained"
           style={theme}
-          endIcon={<AddIcon />}
+          endIcon={<AddIcon fontSize="small" />}
         >
           Add
         </MUI.Button>

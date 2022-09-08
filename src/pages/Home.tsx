@@ -58,14 +58,18 @@ export default function Home() {
               <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHeader
                   arrowName={
-                    sortByName ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />
+                    sortByName ? (
+                      <ArrowUpwardIcon fontSize="small" />
+                    ) : (
+                      <ArrowDownwardIcon fontSize="small" />
+                    )
                   }
                   nameSort={handleNameSorting}
                   arrowPopulation={
                     sortByPopulation ? (
-                      <ArrowUpwardIcon />
+                      <ArrowUpwardIcon fontSize="small" />
                     ) : (
-                      <ArrowDownwardIcon />
+                      <ArrowDownwardIcon fontSize="small" />
                     )
                   }
                   populationSort={handlePopulationSorting}

@@ -4,7 +4,7 @@ import ThemeContext, { themes } from '../context/theme-context'
 import { Button } from '.'
 import MUI from '../muiComponents'
 
-const SwitchTheme = () => {
+const ThemeMenu = () => {
   const { switchTheme } = useContext(ThemeContext)
 
   const actions = [
@@ -45,4 +45,4 @@ const SwitchTheme = () => {
   )
 }
 
-export default SwitchTheme
+export default ThemeMenu

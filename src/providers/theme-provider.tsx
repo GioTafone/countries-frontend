@@ -8,6 +8,8 @@ type ThemeProps = {
 const ThemeProvider = ({ children }: ThemeProps) => {
   const [theme, setTheme] = useState(themes.orange)
 
+  console.log('theme', theme)
+
   const switchTheme = (theme: Theme) => {
     setTheme(theme)
     localStorage.setItem('theme', JSON.stringify(theme))
@@ -15,7 +17,7 @@ const ThemeProvider = ({ children }: ThemeProps) => {
 
   useEffect(() => {
     try {
-      const theme = localStorage.getItem('theme') || '{}'
+      const theme = localStorage.getItem('theme') || '{themes.orange}'
       setTheme(JSON.parse(theme))
     } catch (error) {
       localStorage.setItem('theme', JSON.stringify(themes.orange))
