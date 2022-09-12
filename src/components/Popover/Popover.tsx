@@ -29,8 +29,6 @@ const Popover = () => {
   const totalFavourites = favouriteCountries.countries.length
   const isEmpty = totalFavourites === 0
 
-  console.log('to map', favouriteCountries.countries)
-
   return (
     <>
       <MUI.IconButton
@@ -75,10 +73,10 @@ const Popover = () => {
               </MUI.Typography>
             )}
           </MUI.Grid>
-          {favouriteCountries.countries.map((country, i) => {
+          {favouriteCountries.countries.map((country) => {
             return (
               <Favourites
-                key={i}
+                key={country.flags.png}
                 favouriteName={country.name.common}
                 handleRemove={() => dispatch(removeFromFavourite(country))}
                 flag={country.flags.png}

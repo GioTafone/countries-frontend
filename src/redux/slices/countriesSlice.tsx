@@ -24,7 +24,6 @@ export const fetchCountriesThunk = createAsyncThunk(
 
     const res = await axios.get(url)
 
-    //console.log('response', res)
     return {
       data: res.data,
       status: res.status,
@@ -90,7 +89,6 @@ export const counterSlice = createSlice({
       state.isLoading = true
     })
     builder.addCase(fetchCountriesThunk.fulfilled, (state, action) => {
-      //console.log('COUNTRIES SLICE ACTION:', action)
       state.items = action.payload.data
       state.itemsRef = action.payload.data
       state.isLoading = false

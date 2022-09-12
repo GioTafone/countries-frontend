@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 
 import { fetchCountriesThunk } from '../redux/slices/countriesSlice'
 import { addToFavourite } from '../redux/slices/favouriteSlice'
@@ -13,8 +15,6 @@ import {
 import ThemeContext from '../context/theme-context'
 import { NavBar, TableRow, TableHeader } from '../components'
 import MUI from '../muiComponents'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 
 export default function Home() {
   const [sortByName, setSortByName] = useState(true)
@@ -22,7 +22,6 @@ export default function Home() {
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
   const { countries } = useSelector((state: RootState) => state)
-  //console.log('STATE FETCH COUNTRIES', countries.items)
 
   useEffect(() => {
     dispatch(fetchCountriesThunk())
@@ -76,7 +75,7 @@ export default function Home() {
                 />
                 {/* {countries.isLoading && <MUI.CircularProgress />} */}
                 <MUI.TableBody>
-                  {countries.items.map((country: any) => {
+                  {countries.items.map((country) => {
                     return (
                       <TableRow
                         key={country.ccn3}

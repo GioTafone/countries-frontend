@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
+import { Country } from '../../types'
 import { FavouriteState } from '../../types'
 
 const initialState: FavouriteState = {
@@ -11,33 +12,25 @@ export const favouriteSlice = createSlice({
   name: 'favouriteCountries',
   initialState,
   reducers: {
-    addToFavourite: (state, action: PayloadAction<any>) => {
-      //console.log('ADD TO FAVOURITE ACTION:', action.payload)
+    addToFavourite: (state, action: PayloadAction<Country>) => {
       const { name, flags } = action.payload
       const country = { name, flags }
 
       if (!state.countries.some((e) => e.name.common === country.name.common)) {
         state.countries = [...state.countries, country]
       } else {
+        state.countries = [...state.countries]
         alert(`${name.common} already into Favourites`)
       }
     },
-    // alreadyInFavourite: (state, action: PayloadAction<any>) => {
-    //   //console.log('ADD TO FAVOURITE ACTION:', action.payload)
-    //   const { name } = action.payload
-    //   if (state.countries.some((e) => e.name.common === name.common)) {
-    //     return console.log(name.common)
-    //   }
-    // },
-    removeFromFavourite: (state, action: PayloadAction<any>) => {
+    removeFromFavourite: (state, action) => {
       const removeCountry = action.payload.name.common
-      //console.log('REMOVE FROM FAVOURITE ACTION:', removeCountry)
       const filteredCountries = state.countries.filter(
         (country) => country.name.common !== removeCountry
       )
       state.countries = filteredCountries
     },
-    removeAll: (state, action: PayloadAction<any>) => {
+    removeAll: (state, action) => {
       const deleteCountries = state.countries.filter(
         (country) => country === action.payload
       )

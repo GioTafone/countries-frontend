@@ -1,19 +1,18 @@
 import React, { useContext } from 'react'
-import MUI from '../muiComponents'
 import AddIcon from '@material-ui/icons/Add'
 import { Link } from 'react-router-dom'
 
 import ThemeContext from '../context/theme-context'
 import { Country } from '../types'
-import { Typography } from '@material-ui/core'
+import MUI from '../muiComponents'
 
-type RowProps = {
+type TableRowProps = {
   country: Country
   theme: { color: string; backgroundColor: string }
   handleAddToFavourite: () => void
 }
 
-const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
+const TableRow = ({ country, handleAddToFavourite }: TableRowProps) => {
   const { theme } = useContext(ThemeContext)
 
   const currencies = Object.values(country.currencies).map(
@@ -21,7 +20,7 @@ const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
   )
 
   const cells = [
-    country.name.common,
+    country.name.official,
     country.capital.join(', '),
     country.population,
     currencies.join(', '),
@@ -33,7 +32,7 @@ const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
       <MUI.TableCell scope="row">
-        <img src={country.flags.png} alt={country.name.common} />
+        <img src={country.flags.png} alt={country.name.official} />
       </MUI.TableCell>
       {cells.map((cell, i) => {
         return (
@@ -42,7 +41,7 @@ const TableRow = ({ country, handleAddToFavourite }: RowProps) => {
               to={`/country/${cells[0]}`}
               style={{ textDecoration: 'none', color: 'black' }}
             >
-              <Typography>{cell}</Typography>
+              <MUI.Typography>{cell}</MUI.Typography>
             </Link>
           </MUI.TableCell>
         )

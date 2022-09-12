@@ -2,15 +2,13 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
-import Country from './pages/Country'
+import SingleCountry from './pages/SingleCountry/SingleCountry'
 
 const Pages = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/country/:id" element={<Country />} />
+    <Route path="/country/:id" element={<SingleCountry />} />
   </Routes>
 )
 
 export default Pages
-
-// <Route exact path="/country/:id" component={Country} />

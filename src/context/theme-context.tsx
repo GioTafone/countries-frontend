@@ -1,14 +1,6 @@
 import React from 'react'
 
-export type Theme = {
-  color: string
-  backgroundColor: string
-}
-export type Themes = {
-  orange: Theme
-  blue: Theme
-  green: Theme
-}
+import { Themes, Theme } from '../types'
 
 export const themes: Themes = {
   orange: {

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-import ThemeContext, { themes, Theme } from '../context/theme-context'
+import ThemeContext, { themes } from '../context/theme-context'
+import { Theme } from '../types'
 
 type ThemeProps = {
   children: React.ReactNode
 }
 const ThemeProvider = ({ children }: ThemeProps) => {
   const [theme, setTheme] = useState(themes.orange)
-
-  console.log('theme', theme)
 
   const switchTheme = (theme: Theme) => {
     setTheme(theme)

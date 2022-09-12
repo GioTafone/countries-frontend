@@ -7,7 +7,7 @@ import { useStyles } from './FavouritesStyle'
 type CartProps = {
   favouriteName: {}
   handleRemove: () => void
-  flag: any
+  flag: string
 }
 
 const Favourites = ({ favouriteName, handleRemove, flag }: CartProps) => {
