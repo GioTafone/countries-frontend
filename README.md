@@ -6,6 +6,7 @@
  - MUI
 
 <br />
+
 ### Features
  * Change Theme
  * Display Country
@@ -14,6 +15,7 @@
  * Country details displayed in a different page
 
 <br />
+
 ## Live app
 https://fs12-frontend-project.vercel.app/
 
