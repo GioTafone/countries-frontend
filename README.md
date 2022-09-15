@@ -7,7 +7,7 @@
 
 <br />
 
-### Features of the application
+### Features
  * Change Theme
  * Display Country
  * Search for a specific country
@@ -19,5 +19,7 @@
 ## Live app
 https://fs12-frontend-project.vercel.app/
 
-##RestApi 
+<br />
+
+## RestApi 
 https://restcountries.com/
