@@ -1,0 +1,9 @@
+.body {
+  margin: 20px 100px;
+}
+
+@media all and (max-width: 1200px) {
+  .body {
+    margin: 20px 0;
+  }
+}
