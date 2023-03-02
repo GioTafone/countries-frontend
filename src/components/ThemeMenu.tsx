@@ -8,6 +8,7 @@ const ThemeMenu = () => {
   const { switchTheme } = useContext(ThemeContext)
 
   const actions = [
+    //Testing themeMenu
     {
       action: () => switchTheme(themes.orange),
       text: 'Orange',
