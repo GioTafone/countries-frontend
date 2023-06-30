@@ -122,17 +122,3 @@ Sending me/Vincent a message saying my app is broken would help **no one**.
 <br />
 
 ## FAQ
-
-
-* What if I finished earlier?
-  * You can always have extra tasks; reach out to me if you need help on what to add.
-* Can I add more features?
-  * Sure you can, but first, you are required to finish the requirements
-* I'm progressing slowly! I'm stuck!
-  * Reach out to me or Vincent. (Remember you have a deadline to meet)
-* I'm not good at styling! I'm still a newbie in JS!
-  * styling could be ignored and just focus on the functionalities
-  * JS/TS is giving you a headache? book a 1on1 or keep on struggling alone😢
-* Can I know my own evaluation?
-  * this data is between me and the BD team
-  * you can still book 1on1 session with me or send me a DM where I would tell you my opinion of your tech/soft skills.
